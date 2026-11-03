@@ -1,0 +1,125 @@
+
+  ================= LogiRed Colombia S.A.S. =================
+   ÁRBOL (jerarquía)              GRAFO (rutas)
+   1. Mostrar árbol               6. Mostrar grafo
+   2. Insertar centro             7. Agregar conexión
+   3. Buscar centro               8. Ciudades conectadas
+   4. Recorridos                  9. Rutas disponibles + Dijkstra
+   5. Contar nodos
+   0. Salir
+  ============================================================
+  Opción: 2
+  Código (ej. CD10): CD10
+  Ciudad: Tunja
+  Código del centro padre: CD01
+  [OK] CD10 Tunja insertado bajo CD01.
+
+  ================= LogiRed Colombia S.A.S. =================
+   ÁRBOL (jerarquía)              GRAFO (rutas)
+   1. Mostrar árbol               6. Mostrar grafo
+   2. Insertar centro             7. Agregar conexión
+   3. Buscar centro               8. Ciudades conectadas
+   4. Recorridos                  9. Rutas disponibles + Dijkstra
+   5. Contar nodos
+   0. Salir
+  ============================================================
+  Opción: 1
+  CD01 - Bogotá
+  ├── CD02 - Medellín
+  │   ├── CD06 - Pereira
+  │   └── CD05 - Bucaramanga
+  ├── CD03 - Cali
+  ├── CD04 - Barranquilla
+  │   └── CD07 - Cartagena
+  └── CD10 - Tunja
+
+  ================= LogiRed Colombia S.A.S. =================
+   ÁRBOL (jerarquía)              GRAFO (rutas)
+   1. Mostrar árbol               6. Mostrar grafo
+   2. Insertar centro             7. Agregar conexión
+   3. Buscar centro               8. Ciudades conectadas
+   4. Recorridos                  9. Rutas disponibles + Dijkstra
+   5. Contar nodos
+   0. Salir
+  ============================================================
+  Opción: 7
+  Origen: Bogotá
+  Destino: Tunja
+  Distancia (km): 140
+  [OK] Conexión Bogotá - Tunja (140 km) agregada.
+
+  ================= LogiRed Colombia S.A.S. =================
+   ÁRBOL (jerarquía)              GRAFO (rutas)
+   1. Mostrar árbol               6. Mostrar grafo
+   2. Insertar centro             7. Agregar conexión
+   3. Buscar centro               8. Ciudades conectadas
+   4. Recorridos                  9. Rutas disponibles + Dijkstra
+   5. Contar nodos
+   0. Salir
+  ============================================================
+  Opción: 8
+  Ciudad: Tunja
+   - Bogotá: 140 km
+
+  ================= LogiRed Colombia S.A.S. =================
+   ÁRBOL (jerarquía)              GRAFO (rutas)
+   1. Mostrar árbol               6. Mostrar grafo
+   2. Insertar centro             7. Agregar conexión
+   3. Buscar centro               8. Ciudades conectadas
+   4. Recorridos                  9. Rutas disponibles + Dijkstra
+   5. Contar nodos
+   0. Salir
+  ============================================================
+  Opción: 9
+  Origen: Tunja
+  Destino: Cartagena
+  Rutas disponibles Tunja -> Cartagena: 5
+     1. Tunja -> Bogotá -> Bucaramanga -> Barranquilla -> Cartagena  = 1192 km
+     2. Tunja -> Bogotá -> Medellín -> Cartagena  = 1198 km
+     3. Tunja -> Bogotá -> Cali -> Pereira -> Medellín -> Cartagena  = 1667 km
+     4. Tunja -> Bogotá -> Cali -> Cartagena  = 1780 km
+     5. Tunja -> Bogotá -> Medellín -> Pereira -> Cali -> Cartagena  = 2159 km
+  Dijkstra (menor distancia): Tunja -> Bogotá -> Bucaramanga -> Barranquilla -> Cartagena = 1192 km
+
+  ================= LogiRed Colombia S.A.S. =================
+   ÁRBOL (jerarquía)              GRAFO (rutas)
+   1. Mostrar árbol               6. Mostrar grafo
+   2. Insertar centro             7. Agregar conexión
+   3. Buscar centro               8. Ciudades conectadas
+   4. Recorridos                  9. Rutas disponibles + Dijkstra
+   5. Contar nodos
+   0. Salir
+  ============================================================
+  Opción: 3
+  Código o ciudad: CD10
+  Buscar 'CD10': CD10 - Tunja
+     Depende de : CD01 - Bogotá   |   Nivel: 1
+     Dependientes: ninguno (hoja)
+     Conexiones  : Bogotá (140 km)
+
+  ================= LogiRed Colombia S.A.S. =================
+   ÁRBOL (jerarquía)              GRAFO (rutas)
+   1. Mostrar árbol               6. Mostrar grafo
+   2. Insertar centro             7. Agregar conexión
+   3. Buscar centro               8. Ciudades conectadas
+   4. Recorridos                  9. Rutas disponibles + Dijkstra
+   5. Contar nodos
+   0. Salir
+  ============================================================
+  Opción: 5
+  Raíz          : Bogotá
+  Nodos internos: Medellín, Barranquilla
+  Hojas         : Cali, Tunja, Pereira, Bucaramanga, Cartagena
+  Total de nodos: 8   |   Altura: 3 niveles
+
+  ================= LogiRed Colombia S.A.S. =================
+   ÁRBOL (jerarquía)              GRAFO (rutas)
+   1. Mostrar árbol               6. Mostrar grafo
+   2. Insertar centro             7. Agregar conexión
+   3. Buscar centro               8. Ciudades conectadas
+   4. Recorridos                  9. Rutas disponibles + Dijkstra
+   5. Contar nodos
+   0. Salir
+  ============================================================
+  Opción: 0
+  Hasta luego.

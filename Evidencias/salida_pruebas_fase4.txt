@@ -1,0 +1,135 @@
+
+==========================================================================
+ ESTADO INICIAL - Árbol jerárquico y grafo de la guía
+==========================================================================
+  CD01 - Bogotá
+  ├── CD02 - Medellín
+  │   ├── CD06 - Pereira
+  │   └── CD05 - Bucaramanga
+  ├── CD03 - Cali
+  └── CD04 - Barranquilla
+      └── CD07 - Cartagena
+
+  Raíz          : Bogotá
+  Nodos internos: Medellín, Barranquilla
+  Hojas         : Cali, Pereira, Bucaramanga, Cartagena
+  Total de nodos: 7   |   Altura: 3 niveles
+
+  Grafo: 7 vértices y 9 aristas
+  Bogotá        -> Medellín (415 km), Cali (460 km), Bucaramanga (397 km)
+  Medellín      -> Bogotá (415 km), Pereira (214 km), Cartagena (643 km)
+  Cali          -> Bogotá (460 km), Pereira (210 km), Cartagena (1180 km)
+  Bucaramanga   -> Bogotá (397 km), Barranquilla (535 km)
+  Pereira       -> Medellín (214 km), Cali (210 km)
+  Cartagena     -> Medellín (643 km), Barranquilla (120 km), Cali (1180 km)
+  Barranquilla  -> Cartagena (120 km), Bucaramanga (535 km)
+
+==========================================================================
+ PRUEBA 1 - Insertar Manizales (CD08) y Santa Marta (CD09)
+==========================================================================
+  Criterio: cada centro depende del centro existente con el que tiene
+  conexión logística directa (el más cercano en la red de la guía).
+  [OK] CD08 Manizales insertado como hijo de CD06 Pereira (52 km)
+  [OK] CD09 Santa Marta insertado como hijo de CD07 Cartagena (240 km)
+  [OK] Conexiones agregadas: Pereira-Manizales (52 km), Cartagena-Santa Marta (240 km)
+
+  Validaciones:
+  [!] El código CD08 ya existe. No se insertó.
+  [!] No existe el centro padre CD99. No se insertó.
+  [!] Origen y destino no pueden ser la misma ciudad.
+
+  CD01 - Bogotá
+  ├── CD02 - Medellín
+  │   ├── CD06 - Pereira
+  │   │   └── CD08 - Manizales
+  │   └── CD05 - Bucaramanga
+  ├── CD03 - Cali
+  └── CD04 - Barranquilla
+      └── CD07 - Cartagena
+          └── CD09 - Santa Marta
+
+==========================================================================
+ PRUEBA 2 - Consulta de centros
+==========================================================================
+  Buscar 'CD08': CD08 - Manizales
+     Depende de : CD06 - Pereira   |   Nivel: 3
+     Dependientes: ninguno (hoja)
+     Conexiones  : Pereira (52 km)
+  Buscar 'Santa Marta': CD09 - Santa Marta
+     Depende de : CD07 - Cartagena   |   Nivel: 3
+     Dependientes: ninguno (hoja)
+     Conexiones  : Cartagena (240 km)
+  Buscar 'medellín': CD02 - Medellín
+     Depende de : CD01 - Bogotá   |   Nivel: 1
+     Dependientes: Pereira, Bucaramanga
+     Conexiones  : Bogotá (415 km), Pereira (214 km), Cartagena (643 km)
+  Buscar 'CD01': CD01 - Bogotá
+     Depende de : (es la raíz)   |   Nivel: 0
+     Dependientes: Medellín, Cali, Barranquilla
+     Conexiones  : Medellín (415 km), Cali (460 km), Bucaramanga (397 km)
+  Buscar 'CD15': no existe en la jerarquía.
+
+  Total de nodos: 9
+
+==========================================================================
+ PRUEBA 3 - Recorridos del árbol actualizado
+==========================================================================
+  Preorden : Bogotá -> Medellín -> Pereira -> Manizales -> Bucaramanga -> Cali -> Barranquilla -> Cartagena -> Santa Marta
+  Postorden: Manizales -> Pereira -> Bucaramanga -> Medellín -> Cali -> Santa Marta -> Cartagena -> Barranquilla -> Bogotá
+  Anchura  : Bogotá -> Medellín -> Cali -> Barranquilla -> Pereira -> Bucaramanga -> Cartagena -> Manizales -> Santa Marta
+
+  Raíz          : Bogotá
+  Nodos internos: Medellín, Barranquilla, Pereira, Cartagena
+  Hojas         : Cali, Bucaramanga, Manizales, Santa Marta
+  Total de nodos: 9   |   Altura: 4 niveles
+
+==========================================================================
+ PRUEBA 4 - Grafo actualizado (lista de adyacencia)
+==========================================================================
+  9 vértices y 11 aristas
+
+  Bogotá        -> Medellín (415 km), Cali (460 km), Bucaramanga (397 km)
+  Medellín      -> Bogotá (415 km), Pereira (214 km), Cartagena (643 km)
+  Cali          -> Bogotá (460 km), Pereira (210 km), Cartagena (1180 km)
+  Bucaramanga   -> Bogotá (397 km), Barranquilla (535 km)
+  Pereira       -> Medellín (214 km), Cali (210 km), Manizales (52 km)
+  Cartagena     -> Medellín (643 km), Barranquilla (120 km), Cali (1180 km), Santa Marta (240 km)
+  Barranquilla  -> Cartagena (120 km), Bucaramanga (535 km)
+  Manizales     -> Pereira (52 km)
+  Santa Marta   -> Cartagena (240 km)
+
+==========================================================================
+ PRUEBA 5 - Análisis de rutas con Dijkstra
+==========================================================================
+  Rutas disponibles Bogotá -> Cartagena: 5
+     1. Bogotá -> Bucaramanga -> Barranquilla -> Cartagena  = 1052 km
+     2. Bogotá -> Medellín -> Cartagena  = 1058 km
+     3. Bogotá -> Cali -> Pereira -> Medellín -> Cartagena  = 1527 km
+     4. Bogotá -> Cali -> Cartagena  = 1640 km
+    ... y 1 ruta más larga
+  Dijkstra (menor distancia): Bogotá -> Bucaramanga -> Barranquilla -> Cartagena = 1052 km
+
+  Rutas disponibles Bogotá -> Manizales: 6
+     1. Bogotá -> Medellín -> Pereira -> Manizales  = 681 km
+     2. Bogotá -> Cali -> Pereira -> Manizales  = 722 km
+     3. Bogotá -> Bucaramanga -> Barranquilla -> Cartagena -> Medellín -> Pereira -> Manizales  = 1961 km
+     4. Bogotá -> Bucaramanga -> Barranquilla -> Cartagena -> Cali -> Pereira -> Manizales  = 2494 km
+    ... y 2 rutas más largas
+  Dijkstra (menor distancia): Bogotá -> Medellín -> Pereira -> Manizales = 681 km
+
+  Rutas disponibles Cali -> Barranquilla: 6
+     1. Cali -> Pereira -> Medellín -> Cartagena -> Barranquilla  = 1187 km
+     2. Cali -> Cartagena -> Barranquilla  = 1300 km
+     3. Cali -> Bogotá -> Bucaramanga -> Barranquilla  = 1392 km
+     4. Cali -> Bogotá -> Medellín -> Cartagena -> Barranquilla  = 1638 km
+    ... y 2 rutas más largas
+  Dijkstra (menor distancia): Cali -> Pereira -> Medellín -> Cartagena -> Barranquilla = 1187 km
+
+  Rutas disponibles Bogotá -> Santa Marta: 5
+     1. Bogotá -> Bucaramanga -> Barranquilla -> Cartagena -> Santa Marta  = 1292 km
+     2. Bogotá -> Medellín -> Cartagena -> Santa Marta  = 1298 km
+     3. Bogotá -> Cali -> Pereira -> Medellín -> Cartagena -> Santa Marta  = 1767 km
+     4. Bogotá -> Cali -> Cartagena -> Santa Marta  = 1880 km
+    ... y 1 ruta más larga
+  Dijkstra (menor distancia): Bogotá -> Bucaramanga -> Barranquilla -> Cartagena -> Santa Marta = 1292 km
+
